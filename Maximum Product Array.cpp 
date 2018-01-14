@@ -1,0 +1,58 @@
+class Solution {
+public:
+    /*
+     * @param nums: An array of integers
+     * @return: An integer
+     */
+    int maxProduct(vector<int> &nums) {
+        // write your code here
+        int n = nums.size();
+        if (n == 0) {
+            return 0;
+        }
+
+        vector<vector<int>> dp(n, vector<int>(n));
+        vector<vector<bool>> visit(n, vector<bool>(n, false));
+
+        for (int i = 0; i < n; ++i) {
+            for (int j = 0; j < n; ++j) {
+                dp[i][j] = mSearch(nums, dp, visit, i, j);
+            }
+        }
+
+        int rst = INT_MIN;
+        for (int i = 0; i < n; ++i) {
+            for (int j = 0; j < n; ++j) {
+                rst = max(rst, dp[i][j]);
+            }
+        }
+
+        return rst;
+    }
+
+private:
+    int mSearch(vector<int> &nums,
+                vector<vector<int>> &dp,
+                vector<vector<bool>> &visit,
+                int i,
+                int j) {
+        if (visit[i][j]) {
+            return dp[i][j];
+        }
+
+        visit[i][j] = true;
+
+        if (i > j) {
+            dp[i][j] = 0;
+        } else if (i == j) {
+            dp[i][j] = nums[i];
+        } else {
+            dp[i][j] = max(
+                mSearch(nums, dp, visit, i+1, j) * nums[i],
+                mSearch(nums, dp, visit, i, j-1) * nums[j]
+            );
+        }
+
+        return dp[i][j];
+    }
+};
