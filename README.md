@@ -1,6 +1,12 @@
 # Algorithms
 Getting Over Algorithms with Arac
 
-On going:
+Basically Done:
 
 - Dynamic Programming
+- Trie
+- Union Find
+
+On going:
+
+- Search
