@@ -29,7 +29,7 @@ public:
                 map[cur] = 1;
             }
 
-            cur = cur.substr(1, cur.size());
+            cur = cur.substr(1);
         }
 
         return rst;
