@@ -45,34 +45,33 @@ public:
     }
 
 private:
-
-class UnionFind {
-public:
-    vector<int> father;
-    int island;
-    UnionFind(const int n) {
-        for (int i = 0; i < n; ++i) {
-            father.push_back(i);
-        }
-        island = 0;
-    }
-
-    int find(int x) {
-        if (father[x] == x) {
-            return father[x];
+    class UnionFind {
+    public:
+        vector<int> father;
+        int island;
+        UnionFind(const int n) {
+            for (int i = 0; i < n; ++i) {
+                father.push_back(i);
+            }
+            island = 0;
         }
 
-        return find(father[x]);
-    }
+        int find(int x) {
+            if (father[x] == x) {
+                return father[x];
+            }
 
-    void merge(int a, int b) {
-        int ra = find(a);
-        int rb = find(b);
-
-        if (ra != rb) {
-            father[ra] = rb;
-            island -= 1;
+            return find(father[x]);
         }
-    }
-};
+
+        void merge(int a, int b) {
+            int ra = find(a);
+            int rb = find(b);
+
+            if (ra != rb) {
+                father[ra] = rb;
+                island -= 1;
+            }
+        }
+    };
 };
