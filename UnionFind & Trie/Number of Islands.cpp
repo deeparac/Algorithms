@@ -34,7 +34,7 @@ public:
                     if (j > 0 && grid[i][j-1]) {
                         uf.merge(i * n + j - 1, i * n + j);
                     }
-                    if (j < n - 1&& grid[i][j+1]) {
+                    if (j < n - 1 && grid[i][j+1]) {
                         uf.merge(i * n + j, i * n + j + 1);
                     }
                 }
